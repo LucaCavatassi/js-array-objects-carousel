@@ -104,17 +104,24 @@ function showPrev () {
 
 let carouselLoop = setInterval (showNext, 3000)
 const startStopBtn = document.getElementById("my-stop-button")
+const reverseBtn = document.getElementById("my-order-button")
+
+
 startStopBtn.addEventListener("click", Stop)
-
-
 function Stop(){
   startStopBtn.removeEventListener("click", Stop);
   startStopBtn.addEventListener("click", Start);
   clearInterval(carouselLoop);
 }
-
 function Start(){
   startStopBtn.removeEventListener("click", Start);
   startStopBtn.addEventListener("click", Stop);
   setInterval (showNext, 3000)
+}
+
+reverseBtn.addEventListener("click", backward)
+function backward () {
+  clearInterval(carouselLoop)
+  let backwardCarouselLoop = setInterval (showPrev, 3000)
+  
 }
