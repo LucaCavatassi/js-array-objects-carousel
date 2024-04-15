@@ -29,6 +29,7 @@ const images = [
 
 let activeIndex = 0;
 const container = document.querySelector(".my-carousel-images")
+const thumbnailsDom = document.querySelector(".my-thumbnails");
 
 images.forEach((item, index) => {
   // console.log(item);
@@ -48,11 +49,20 @@ images.forEach((item, index) => {
   </div>
   `
 
+  thumbnailsDom.innerHTML += `
+  <img
+  class="img-fluid my-thumbnail"
+  src="./${item.image}"
+  alt="Thumbnail of ${item.title}"
+  />
+  `
 });
 
 
 const imageElems = document.querySelectorAll(".my-carousel-item")
 imageElems[activeIndex].classList.add("active");
+const thumbnailElems = document.querySelectorAll(".my-thumbnail")
+thumbnailElems[activeIndex].classList.add("active");
 
 
 const nextBtn = document.querySelector(".my-next-hook")
@@ -64,6 +74,8 @@ prevBtn.addEventListener("click", showPrev);
 
 function showNext() {
   imageElems[activeIndex].classList.remove("active")
+  thumbnailElems[activeIndex].classList.remove("active")
+
 
   if (activeIndex < imageElems.length - 1){
     activeIndex++;
@@ -72,10 +84,13 @@ function showNext() {
   }
 
   imageElems[activeIndex].classList.add("active")
+  thumbnailElems[activeIndex].classList.add("active");
 }
 
 function showPrev () {
   imageElems[activeIndex].classList.remove("active")
+  thumbnailElems[activeIndex].classList.remove("active")
+
 
   if (activeIndex > 0){
     activeIndex--;
@@ -84,6 +99,7 @@ function showPrev () {
   }
 
   imageElems[activeIndex].classList.add("active")
+  thumbnailElems[activeIndex].classList.add("active");
 }
 
-const carouselLoop = setInterval (showNext, 3000)
+const carouselLoop = setInterval (showNext, 3000);
