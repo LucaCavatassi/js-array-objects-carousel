@@ -28,6 +28,7 @@ const images = [
 
 
 let activeIndex = 0;
+
 const container = document.querySelector(".my-carousel-images")
 
 images.forEach((item, index) => {
@@ -61,7 +62,8 @@ const nextBtn = document.querySelector(".my-next-hook")
 // console.log(nextBtn);
 const prevBtn = document.querySelector(".my-prev-hook")
 
-nextBtn.addEventListener("click", showNext)
+nextBtn.addEventListener("click", showNext);
+prevBtn.addEventListener("click", showPrev);
 
 function showNext() {
   imageElems[activeIndex].classList.remove("active")
@@ -75,4 +77,14 @@ function showNext() {
   imageElems[activeIndex].classList.add("active")
 }
 
+function showPrev () {
+  imageElems[activeIndex].classList.remove("active")
 
+  if (activeIndex > 0){
+    activeIndex--;
+  } else {
+    activeIndex = imageElems.length - 1;
+  }
+
+  imageElems[activeIndex].classList.add("active")
+}
