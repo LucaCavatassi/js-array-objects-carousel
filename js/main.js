@@ -102,4 +102,19 @@ function showPrev () {
   thumbnailElems[activeIndex].classList.add("active");
 }
 
-const carouselLoop = setInterval (showNext, 3000);
+let carouselLoop = setInterval (showNext, 3000)
+const startStopBtn = document.getElementById("my-stop-button")
+startStopBtn.addEventListener("click", Stop)
+
+
+function Stop(){
+  startStopBtn.removeEventListener("click", Stop);
+  startStopBtn.addEventListener("click", Start);
+  clearInterval(carouselLoop);
+}
+
+function Start(){
+  startStopBtn.removeEventListener("click", Start);
+  startStopBtn.addEventListener("click", Stop);
+  setInterval (showNext, 3000)
+}
